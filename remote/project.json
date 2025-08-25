@@ -1,0 +1,104 @@
+{
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "name": "remote",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "standalone": false
+    },
+    "@schematics/angular:directive": {
+      "standalone": false
+    },
+    "@schematics/angular:pipe": {
+      "standalone": false
+    }
+  },
+  "sourceRoot": "src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "ngx-build-plus:browser",
+      "options": {
+        "tsConfig": "tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "public",
+            "output": "."
+          }
+        ],
+        "styles": [
+          "src/styles.css"
+        ],
+        "main": "src/main.ts",
+        "outputPath": "dist/remote",
+        "index": "src/index.html",
+        "extraWebpackConfig": "webpack.config.js",
+        "commonChunk": false
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kB",
+              "maximumError": "1MB"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kB",
+              "maximumError": "8kB"
+            }
+          ],
+          "outputHashing": "all",
+          "extraWebpackConfig": "webpack.prod.config.js"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production",
+      "outputs": [
+        "{options.outputPath}"
+      ]
+    },
+    "serve": {
+      "executor": "ngx-build-plus:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "remote:build:production",
+          "extraWebpackConfig": "webpack.prod.config.js"
+        },
+        "development": {
+          "buildTarget": "remote:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4201,
+        "publicHost": "http://localhost:4201",
+        "extraWebpackConfig": "webpack.config.js"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular/build:extract-i18n"
+    },
+    "test": {
+      "executor": "@angular/build:karma",
+      "options": {
+        "tsConfig": "tsconfig.spec.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "public"
+          }
+        ],
+        "styles": [
+          "src/styles.css"
+        ]
+      }
+    }
+  }
+}
