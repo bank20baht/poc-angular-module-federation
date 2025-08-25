@@ -5,7 +5,7 @@ module.exports = withModuleFederationPlugin({
   name: 'remote',
 
   exposes: {
-    './Component': './src/app/app.ts',
+    './CounterComponent': './src/app/counter/counter-module.ts',
   },
 
   shared: {
