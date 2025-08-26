@@ -6,6 +6,7 @@ module.exports = withModuleFederationPlugin({
 
   exposes: {
     './CounterComponent': './src/app/counter/counter-module.ts',
+    './CardComponent': './src/app/components/card/card.ts',
   },
 
   shared: {

@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Card } from './components/card/card';
 
-const routes: Routes = [{ path: 'counter', loadChildren: () => import('./counter/counter-module').then(m => m.CounterModule) }];
+const routes: Routes = [
+  { 
+    path: 'counter', 
+    loadChildren: () => import('./counter/counter-module').then(m => m.CounterModule) 
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
