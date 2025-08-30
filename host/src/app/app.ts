@@ -11,12 +11,12 @@ export class App {
 
   @ViewChild('container', { read: ViewContainerRef }) container!: ViewContainerRef;
 
-  async ngAfterViewInit() {
-    this.container.clear();
-    const { Card } = await import('remote/CardComponent');
-    const cardComponentRef = this.container.createComponent(Card);
+  // async ngAfterViewInit() {
+  //   this.container.clear();
+  //   const { Card } = await import('remote/CardComponent');
+  //   const cardComponentRef = this.container.createComponent(Card);
 
-    cardComponentRef.setInput('title', 'Text from Host Component from Remote');
-    cardComponentRef.setInput('content', 'Microfrontend [Webpack5] ลองผิดลองถูกบน Angular 20 ของ Junior Dev');
-  }
+  //   cardComponentRef.setInput('title', 'Text from Host Component from Remote');
+  //   cardComponentRef.setInput('content', 'Microfrontend [Webpack5] ลองผิดลองถูกบน Angular 20 ของ Junior Dev');
+  // }
 }
